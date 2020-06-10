@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Twój Profil</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	</head>
+	<body class="loggedin">
+		<nav class="navtop">
+			<div>
+				<h1>Jewish Bank</h1>
+				<a href="profile.php"><i class="fas fa-user-circle"></i>Twój profil</a>
+				<a href="wpłata.html"> <i class="fas fa-cloud-upload-alt"></i>Wpłata</a>
+				<a href="wypłata.html"> <i class="fas fa-cloud-download-alt"></i>Wypłata</a>
+				<a href="przelew.html"><i class="fas fa-coins"></i>Zrób przelew</a>
+				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Wyloguj się</a>
+			</div>
+        </nav>
+        <div class="content">
+            
+				<h2>Uzupełnij dane do przelewu</h2> <br>
+				<div >
+					<table>
+						<tr>
+							<td>
+								Podaj numer konta <br><br>
+								<form action="przelew.php" method="POST" autocomplete="off">
+									<input type="text" name="nrkonta" id="nrkonta" maxlength="26" size="30">
+								
+							</td>
+						</tr>
+							<tr>
+							<td>
+								Podaj kwotę przelewu <br> <br>
+                    		
+							<input type="text" name="saldo" placeholder="Kwota w zł " id="saldo" required>
+                			<button type="submit" class="btn btn-primary">Wykonaj</button>
+							</form>
+							</td>
+						</tr>
+					</table>
+				</div>
+           		
+        </div>			
+	</body>
+</html>
