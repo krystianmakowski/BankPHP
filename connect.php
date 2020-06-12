@@ -9,6 +9,6 @@ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_
 if (!$con)
   {
     header("location:connection_error.php?error=$con->mysqli_connect_errno");
-  die("Błąd połączenia: " . mysqli_connect_errno());
+    die("Błąd połączenia: " . mysqli_connect_errno());
   }
 ?>

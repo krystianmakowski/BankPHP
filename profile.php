@@ -1,21 +1,5 @@
 <?php
-// Użycie sesji
-session_start();
-// Jeśli użytkownik jest nie zalogowany, nastąpi przekierowanie do strony logowania
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.html');
-	exit;
-}
-
-include "connect.php";
-// Pozyskanie adresu email i hasła z bazy danych (nie przetrzymujemy w sesji)
-$stmt = $con->prepare('SELECT email, saldo, kredyt ,karta FROM accounts WHERE id = ?');
-// Odnalezienie użytkownika po jego ID
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->execute();
-$stmt->bind_result($email, $saldo, $kredyt, $karta);
-$stmt->fetch();
-$stmt->close();
+include "daneprofil.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,18 +18,20 @@ $stmt->close();
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Twój profil</a>
 				<a href="wpłata.html"> <i class="fas fa-cloud-upload-alt"></i>Wpłata</a>
 				<a href="wypłata.html"> <i class="fas fa-cloud-download-alt"></i>Wypłata</a>
-				<a href="przelew.html"><i class="fas fa-coins"></i>Zrób przelew</a>
+				<a href="przelew.html"><i class="fas fa-coins"></i>Przelew</a>
+				<a href="historia.php"><i class="fas fa-history"></i>Historia</a>
+				<a href="kredyt.html"><i class="fas fa-coins"></i>Kredyt</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Wyloguj się</a>
 			</div>
 		</nav>
 		<div class="content">
 			<h2>Twoje Dane</h2>
 			<div>
-				<p>Szczegóły twojego konta:</p>
+				<p>Szczegóły Twojego konta:</p>
 				<table>
 					<tr>
-						<td>Użytkownik:</td>
-						<td><?=$_SESSION['name']?></td>
+						<td>Imię i nazwisko:</td>
+						<td><?=$firstname?> <?=$lastname?></td>
 					</tr>
 					<tr>
 						<td>Email:</td>
@@ -53,18 +39,22 @@ $stmt->close();
 					</tr>
 					<tr>
 						<td>Stan konta:</td>
-						<td><?=$saldo?> PLN</td>
+						<td><?=$accbalance?> PLN</td>
 					</tr>
 					<tr>
-						<td>Wzięty kredyt:</td>
-						<td><?=$kredyt?> PLN</td>
-					</tr>	
+						<td>Numer konta:</td>
+						<td><?=$accnumber?></td>
+					</tr>
 					<tr>
 						<td>Karta kredytowa:</td>
-						<td><?=$karta?> PLN</td>
-					</tr>				
+						<td><?=$creditcardnumber?></td>
+					</tr>
+          <tr>
+						<td>Wzięty kredyt:</td>
+						<td><?=$amount?> PLN</td>
+					</tr>
 				</table>
-			</div> 
-		</div>					
+			</div>
+		</div>
 	</body>
 </html>
